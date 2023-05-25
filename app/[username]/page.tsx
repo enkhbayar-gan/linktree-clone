@@ -1,54 +1,4 @@
-const links_1 = [
-  {
-    title: "Beet Dyed Deviled Eggs",
-    url: "https://www.lovebeets.com/recipes/beet-dyed-deviled-eggs/",
-  },
-  {
-    title: "Beet Poke Bowl",
-    url: "https://lovebeets.com/recipes/beet-poke-bowl-2/",
-  },
-];
-
-const links_2 = [
-  {
-    title: "Google",
-    url: "https://www.google.com/",
-  },
-  {
-    title: "Wikipedia",
-    url: "https://www.wikipedia.org/",
-  },
-];
-let user_1 = {
-  uuid: "1234",
-  username: "enku",
-  firstname: "Enkhbayar",
-  lastname: "Ganbaatar",
-  bio: "This is bio",
-  links: links_1,
-};
-let user_2 = {
-  uuid: "1234",
-  username: "enku",
-  firstname: "Enkhbayar",
-  lastname: "Ganbaatar",
-  bio: "This is bio",
-  links: links_2,
-};
-
-let user = {
-  uuid: "1",
-  username: "enku",
-  firstname: "Enkhbayar",
-  lastname: "Ganbaatar",
-  bio: "This is bio",
-  links: [
-    {
-      title: "Google",
-      url: "https://www.google.com/",
-    }
-  ]
-}
+import { mockData } from "../data";
 
 type Link = {
   title: string;
@@ -64,16 +14,14 @@ type UserData = {
   links: Link[];
 };
 
-let users: any = { enku: user_1, other: user_2 };
-
 export default function Profile({ params }: { params: { username: string } }) {
-  const userData: UserData = users[params.username]; //TODO fetch from backend using params.username
+  const userData: UserData = mockData[params.username]; //TODO fetch from backend using params.username
   return (
-      <main className="flex min-h-screen flex-col items-center px-4 py-8">
-        <Avatar firstname={userData.firstname} lastname={userData.lastname} />
-        <Bio text={userData.bio} />
-        <Links links={userData.links} />
-      </main>
+    <main className="flex min-h-screen flex-col items-center px-4 py-8">
+      <Avatar firstname={userData.firstname} lastname={userData.lastname} />
+      <Bio text={userData.bio} />
+      <Links links={userData.links} />
+    </main>
   );
 }
 
@@ -87,9 +35,7 @@ function Avatar(props: { firstname: string; lastname: string }) {
 }
 
 function Bio(props: { text: string }) {
-  return (
-      <div className="text-center mt-10 text-lg">{props.text}</div>
-  );
+  return <div className="text-center mt-10 text-lg">{props.text}</div>;
 }
 const Links = ({ links }: Props) => {
   return (
@@ -114,8 +60,6 @@ function Link(props: { url: string; title: string }) {
 type Props = {
   links: Link[];
 };
-
-
 
 function getInitials(fname: string, lname: string) {
   return fname.charAt(0) + lname.charAt(0);
