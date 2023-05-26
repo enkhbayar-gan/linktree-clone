@@ -7,11 +7,11 @@ const ActionBar = () => {
   const router = useRouter();
 
   const handleSignout = () => {
-    if(window) window.sessionStorage.removeItem("user");
+    if(typeof window !== 'undefined') window.sessionStorage.removeItem("user");
     router.replace("/");
   };
 
-  return window && !window.sessionStorage.getItem("user") ? (
+  return typeof window !== 'undefined' && !window.sessionStorage.getItem("user") ? (
     <div className="bg-lime-300 p-3 flex gap-5">
       <Link href={"/"}>Home</Link>
       <Link href={"/login"}>Login</Link>
