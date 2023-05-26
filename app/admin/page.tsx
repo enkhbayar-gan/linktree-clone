@@ -6,7 +6,7 @@ import ActionBar from "../ActionBar";
 const AdminPage = () => {
   const router = useRouter();
   let text = "This is admin page.";
-  if (!window.sessionStorage.getItem("user")) {
+  if (window && !window.sessionStorage.getItem("user")) {
     router.replace("/login");
   }
 

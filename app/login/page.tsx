@@ -15,7 +15,7 @@ export default function Login() {
     //TODO call API
     if (!mockData[username] || mockData[username].password !== password) {
       setErrorMsg("Invalid credentials");   
-    } else {
+    } else if(window) {
       window.sessionStorage.setItem("user", JSON.stringify(mockData[username]));
       router.replace("/admin");
     }
